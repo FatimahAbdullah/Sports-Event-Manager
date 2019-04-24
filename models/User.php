@@ -1,4 +1,4 @@
-<?php 
+<?php
   class User {
     // DB and its table
     private $conn;
@@ -22,7 +22,7 @@
     public function read() {
       // Create query
       $query = 'SELECT * FROM ' . $this->table ;
-      
+
       // Prepare statement
       $stmt = $this->conn->prepare($query);
 
@@ -35,7 +35,7 @@
     // Get One User
     public function fetchSpecificUser() {
           // Create query
-          $query = 'SELECT *  FROM ' . $this->table . ' 
+          $query = 'SELECT *  FROM ' . $this->table . '
                                     WHERE
                                       uid = ?
                                     LIMIT 0,1';
@@ -66,7 +66,7 @@
     // SignUp User
     public function signUp() {
           // Create query
-          $query = 'INSERT INTO ' . $this->table . ' SET userName = :userName, fullName = :fullName, 
+          $query = 'INSERT INTO ' . $this->table . ' SET userName = :userName, fullName = :fullName,
           email = :email, password = :password, about = :about, forgetPasswordQA = :forgetPasswordQA';
 
           // Prepare statement
@@ -152,11 +152,11 @@
           // Clean data
           $this->uid = htmlspecialchars(strip_tags($this->uid));
           $this->userName = htmlspecialchars(strip_tags($this->userName));
-          
+
           // Bind data
           $stmt->bindParam(':uid', $this->uid);
           $stmt->bindParam(':userName', $this->userName);
-          
+
 
           // Execute query
           if($stmt->execute()) {
@@ -181,11 +181,11 @@
           // Clean data
           $this->uid = htmlspecialchars(strip_tags($this->uid));
           $this->userName = htmlspecialchars(strip_tags($this->about));
-          
+
           // Bind data
           $stmt->bindParam(':uid', $this->uid);
           $stmt->bindParam(':about', $this->about);
-          
+
 
           // Execute query
           if($stmt->execute()) {
@@ -209,11 +209,11 @@
           // Clean data
           $this->uid = htmlspecialchars(strip_tags($this->uid));
           $this->email = htmlspecialchars(strip_tags($this->email));
-          
+
           // Bind data
           $stmt->bindParam(':uid', $this->uid);
           $stmt->bindParam(':email', $this->email);
-          
+
 
           // Execute query
           if($stmt->execute()) {
@@ -238,11 +238,11 @@
           // Clean data
           $this->uid = htmlspecialchars(strip_tags($this->uid));
           $this->forgetPasswordQA = htmlspecialchars(strip_tags($this->forgetPasswordQA));
-          
+
           // Bind data
           $stmt->bindParam(':uid', $this->uid);
           $stmt->bindParam(':forgetPasswordQA', $this->forgetPasswordQA);
-          
+
 
           // Execute query
           if($stmt->execute()) {
@@ -266,11 +266,11 @@
           // Clean data
           $this->uid = htmlspecialchars(strip_tags($this->uid));
           $this->password = htmlspecialchars(strip_tags($this->password));
-          
+
           // Bind data
           $stmt->bindParam(':uid', $this->uid);
           $stmt->bindParam(':password', $this->password);
-          
+
 
           // Execute query
           if($stmt->execute()) {
@@ -283,9 +283,9 @@
           return false;
     }
 
-    
-   
 
-    
-    
+
+
+
+
   }
