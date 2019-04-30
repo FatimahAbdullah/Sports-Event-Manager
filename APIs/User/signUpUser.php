@@ -19,7 +19,7 @@
 
   // Getting raw posted data 
   $data = json_decode(file_get_contents("php://input"));
-
+  
   $user->userName = $data->userName;
   $user->fullName = $data->fullName;
   $user->email = $data->email;
@@ -33,7 +33,8 @@
     echo json_encode($response_arr);
      } 
   else {
-    echo json_encode($response_arr["status_code"] = 301, $response_arr["status_message"] = "Invalid Credentials"
-    );
+    $response_arr["status_code"] = 301;
+    $response_arr["status_message"] = "Invalid Credentials";
+    echo json_encode($response_arr);
   }
 

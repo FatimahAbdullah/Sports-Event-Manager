@@ -65,35 +65,39 @@
 
     // SignUp User
     public function signUp() {
-          // Create query
-          $query = 'INSERT INTO ' . $this->table . ' SET userName = :userName, fullName = :fullName,
-          email = :email, password = :password, about = :about, forgetPasswordQA = :forgetPasswordQA';
+      // Create query
+      $query = 'INSERT INTO ' . $this->table . ' SET userName = :userName, fullName = :fullName,
+      email = :email, password = :password, about = :about, forgetPasswordQA = :forgetPasswordQA';
 
-          // Prepare statement
-          $stmt = $this->conn->prepare($query);
+      // Prepare statement
+      $stmt = $this->conn->prepare($query);
 
-          // Clean data..make sure no html or special chars there as user sent data
-          $this->userName = htmlspecialchars(strip_tags($this->userName));
-          $this->fullName = htmlspecialchars(strip_tags($this->fullName));
-          $this->email = htmlspecialchars(strip_tags($this->email));
-          $this->password = htmlspecialchars(strip_tags($this->password));
-          $this->about= htmlspecialchars(strip_tags($this->about));
-          $this->forgetPasswordQA = htmlspecialchars(strip_tags($this->forgetPasswordQA));
+      // Clean data..make sure no html or special chars there as user sent data
+      $this->userName = htmlspecialchars(strip_tags($this->userName));
+      $this->fullName = htmlspecialchars(strip_tags($this->fullName));
+      $this->email = htmlspecialchars(strip_tags($this->email));
+      $this->password = htmlspecialchars(strip_tags($this->password));
+      $this->about= htmlspecialchars(strip_tags($this->about));
+      $this->forgetPasswordQA = htmlspecialchars(strip_tags($this->forgetPasswordQA));
 
-          // Bind data
-          $stmt->bindParam(':userName', $this->userName);
-          $stmt->bindParam(':fullName', $this->fullName);
-          $stmt->bindParam(':email', $this->email);
-          $stmt->bindParam(':password', $this->password);
-          $stmt->bindParam(':about', $this->about);
-          $stmt->bindParam(':forgetPasswordQA', $this->forgetPasswordQA);
+      // Bind data
+      $stmt->bindParam(':userName', $this->userName);
+      $stmt->bindParam(':fullName', $this->fullName);
+      $stmt->bindParam(':email', $this->email);
+      $stmt->bindParam(':password', $this->password);
+      $stmt->bindParam(':about', $this->about);
+      $stmt->bindParam(':forgetPasswordQA', $this->forgetPasswordQA);
 
-
-          // Execute query
-          if($stmt->execute()) {
-            return true;
+      try{
+        // Execute query
+        if($stmt->execute()) {
+          return true;
+        }
       }
-
+      catch(PDOException $e){
+        echo $e->getMessage();
+        return false;
+      }
       // Print error if something goes wrong
       printf("Error: %s.\n", $stmt->error);
 
