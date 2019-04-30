@@ -1,4 +1,3 @@
-
 <?php
   // Headers
   header('Access-Control-Allow-Origin: *');//since a public API
@@ -38,7 +37,7 @@
         'password' => $password,
         'about' => html_entity_decode($about),
         'forgetPasswordQA' => $forgetPasswordQA,
-
+ 
       );
 
       // Push to "user_data"
