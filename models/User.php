@@ -52,7 +52,6 @@
           $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
           // Set properties
-          $this->uid = $row['uid'];
           $this->userName = $row['userName'];
           $this->fullName = $row['fullName'];
           $this->email = $row['email'];

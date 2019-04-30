@@ -45,12 +45,10 @@
   }
   else
   {
+    $user_arr["status_code"]    =       299;  
+    $user_arr["status_message"] =       "No User Found Against Given Id!";
     // No Users
-    echo json_encode(
-    $user_arr["status_code"]    =       299,  
-    $user_arr["status_message"] =       "No User Found Against Given Id!" 
-      //array('message' => 'No Users Found')
-    );
+    echo json_encode($user_arr);
   }
 
   
