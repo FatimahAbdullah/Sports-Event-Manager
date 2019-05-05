@@ -19,26 +19,35 @@
 
   // Get raw posted data 
   $data = json_decode(file_get_contents("php://input"));
+  $rest_json = file_get_contents("php://input");
+  $_POST = json_decode($rest_json, true);
+  
+  if(isset($_POST["uid"]) && isset($_POST["userName"]) && isset($_POST["password"]) && isset($_POST["email"]) && isset($_POST["about"])){
+    
+    
+    // Set values to update...based on id its done
+    $user->uid = $_POST["uid"];
+    $user->userName = $_POST["userName"];
+    $user->password =$_POST["password"];
+    $user->about=$_POST["about"];
+    $user->email=$_POST["email"];
+    $user->forgetPasswordQA=$_POST["forgetPasswordQA"];
 
-  // Set values to update...based on id its done
-  $user->uid = $data->uid;
-
-  $user->userName = $data->userName;
-  $user->fullName = $data->fullName;
-  $user->email = $data->email;
-  $user->password = $data->password;
-  $user->about = $data->about;
-  $user->forgetPasswordQA = $data->forgetPasswordQA;
-
-
-  // Update User Attributes
-  if($user->editCompleteProfile()) 
-  {
-    echo json_encode( $response_arr);
+    // Update UserName Attribute
+    if($user->editUserName()) 
+    {
+      echo json_encode( $response_arr);
+    }
+    else 
+    {
+      $response_arr["status_code"] = 308;
+      $response_arr["status_message"] = "Error, UserName Could Not be Edited!";
+      echo json_encode($response_arr);
+    }
   }
-   else 
-  {
-    echo json_encode($response_arr["status_code"] = 305, $response_arr["status_message"] = "Error, Profile Could Not be Edited!"
-    );
+  else {
+    $response_arr["status_code"] = 300;
+    $response_arr["status_message"] = "Invalid Parameters";
+    echo json_encode($response_arr);
   }
 

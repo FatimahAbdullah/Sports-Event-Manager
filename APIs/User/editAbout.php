@@ -16,24 +16,33 @@
 
   // Initialize user object
   $user = new User($db_conn);
+  $rest_json = file_get_contents("php://input");
+  $_POST = json_decode($rest_json, true);
+  
+  if(isset($_POST["uid"]) && isset($_POST["about"])){
+    
+    
+    // Set values to update...based on id its done
+    $user->uid = $_POST["uid"];
+    $user->about = $_POST["about"];
 
-  // Get raw posted data 
-  $data = json_decode(file_get_contents("php://input"));
-
-  // Set values to update...based on id its done
-  $user->uid = $data->uid;
-  $user->about = $data->about;
 
 
-
-  // Update About Attribute
-  if($user->editAbout()) 
-  {
-    echo json_encode( $response_arr);
+    // Update UserName Attribute
+    if($user->editAbout()) 
+    {
+      echo json_encode( $response_arr);
+    }
+    else 
+    {
+      $response_arr["status_code"] = 308;
+      $response_arr["status_message"] = "Error, About Could Not be Edited!";
+      echo json_encode($response_arr);
+    }
   }
-   else 
-  {
-    echo json_encode($response_arr["status_code"] = 305, $response_arr["status_message"] = "Error, About Section Could Not be Edited!"
-    );
+  else {
+    $response_arr["status_code"] = 300;
+    $response_arr["status_message"] = "Invalid Parameters";
+    echo json_encode($response_arr);
   }
 

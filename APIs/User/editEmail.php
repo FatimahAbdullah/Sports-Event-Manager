@@ -16,24 +16,33 @@
 
   // Initialize user object
   $user = new User($db_conn);
+  $rest_json = file_get_contents("php://input");
+  $_POST = json_decode($rest_json, true);
+  
+  if(isset($_POST["uid"]) && isset($_POST["email"])){
+    
+    
+    // Set values to update...based on id its done
+    $user->uid = $_POST["uid"];
+    $user->email = $_POST["email"];
 
-  // Get raw posted data 
-  $parameters = json_decode(file_get_contents("php://input"));
-
-  // Set values to update...based on id its done
-  $user->uid = $parameters->uid;
-  $user->email = $parameters->email;
 
 
-
-  // Update Email Attribute
-  if($user->editEmail()) 
-  {
-    echo json_encode( $response_arr);
+    // Update UserName Attribute
+    if($user->editEmail()) 
+    {
+      echo json_encode( $response_arr);
+    }
+    else 
+    {
+      $response_arr["status_code"] = 308;
+      $response_arr["status_message"] = "Error, Email Could Not be Edited!";
+      echo json_encode($response_arr);
+    }
   }
-   else 
-  {
-    echo json_encode($response_arr["status_code"] = 306, $response_arr["status_message"] = "Error, Email Could Not be Edited!"
-    );
+  else {
+    $response_arr["status_code"] = 300;
+    $response_arr["status_message"] = "Invalid Parameters";
+    echo json_encode($response_arr);
   }
 
