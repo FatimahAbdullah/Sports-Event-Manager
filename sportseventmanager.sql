@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 23, 2019 at 01:56 PM
+-- Generation Time: May 05, 2019 at 07:37 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.4
 
@@ -27,8 +27,6 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `club`
 --
--- Creation: Apr 23, 2019 at 11:49 AM
---
 
 CREATE TABLE `club` (
   `clubId` int(11) NOT NULL,
@@ -40,19 +38,28 @@ CREATE TABLE `club` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONSHIPS FOR TABLE `club`:
---   `founderUid`
---       `user` -> `uid`
---   `type`
---       `sport` -> `sport_id`
+-- Dumping data for table `club`
 --
+
+INSERT INTO `club` (`clubId`, `clubName`, `description`, `creationDate`, `founderUid`, `type`) VALUES
+(8, 'Fast League', 'Cricket Club for FAST NUCES students', '2019-05-05', 5, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `clubmembership`
+--
+
+CREATE TABLE `clubmembership` (
+  `membershipId` int(11) NOT NULL,
+  `clubId` int(11) NOT NULL,
+  `memberId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `event`
---
--- Creation: Apr 23, 2019 at 11:52 AM
 --
 
 CREATE TABLE `event` (
@@ -65,30 +72,28 @@ CREATE TABLE `event` (
   `forClub` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+-- --------------------------------------------------------
+
 --
--- RELATIONSHIPS FOR TABLE `event`:
---   `addedByUid`
---       `user` -> `uid`
---   `forClub`
---       `club` -> `clubId`
+-- Table structure for table `eventparticipation`
 --
+
+CREATE TABLE `eventparticipation` (
+  `participationId` int(11) NOT NULL,
+  `participantId` int(11) NOT NULL,
+  `eventId` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
 -- Table structure for table `sport`
 --
--- Creation: Apr 23, 2019 at 10:35 AM
---
 
 CREATE TABLE `sport` (
   `sport_id` int(11) NOT NULL,
   `sportName` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- RELATIONSHIPS FOR TABLE `sport`:
---
 
 --
 -- Dumping data for table `sport`
@@ -102,8 +107,6 @@ INSERT INTO `sport` (`sport_id`, `sportName`) VALUES
 --
 -- Table structure for table `user`
 --
--- Creation: Apr 23, 2019 at 10:31 AM
---
 
 CREATE TABLE `user` (
   `uid` int(11) NOT NULL,
@@ -116,15 +119,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- RELATIONSHIPS FOR TABLE `user`:
---
-
---
 -- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`uid`, `userName`, `fullName`, `email`, `password`, `about`, `forgetPasswordQA`) VALUES
-(1, 'hazal', 'Mehreen Athar', 'mehreen23@gmail.com', '123456', NULL, NULL);
+(2, '', '', '', '', '', ''),
+(5, 'fatie', 'Fatimah Abdullah', 'fatimah.a237@gmail.com', '12345678', 'meeee', 'dsdsds'),
+(9, 'Marriam', '', '', '', '', 'dsdsds');
 
 --
 -- Indexes for dumped tables
@@ -137,7 +138,16 @@ ALTER TABLE `club`
   ADD PRIMARY KEY (`clubId`),
   ADD UNIQUE KEY `clubName` (`clubName`),
   ADD KEY `founderUid` (`founderUid`),
-  ADD KEY `type` (`type`);
+  ADD KEY `type` (`type`),
+  ADD KEY `clubId` (`clubId`);
+
+--
+-- Indexes for table `clubmembership`
+--
+ALTER TABLE `clubmembership`
+  ADD PRIMARY KEY (`membershipId`),
+  ADD KEY `FK_CLUB` (`clubId`),
+  ADD KEY `FK_USER` (`memberId`);
 
 --
 -- Indexes for table `event`
@@ -146,6 +156,14 @@ ALTER TABLE `event`
   ADD PRIMARY KEY (`eventId`),
   ADD KEY `addedByUid` (`addedByUid`),
   ADD KEY `forClub` (`forClub`);
+
+--
+-- Indexes for table `eventparticipation`
+--
+ALTER TABLE `eventparticipation`
+  ADD PRIMARY KEY (`participationId`),
+  ADD KEY `FK_EVENT` (`eventId`),
+  ADD KEY `FK_PARTICIPANT` (`participantId`);
 
 --
 -- Indexes for table `sport`
@@ -159,7 +177,8 @@ ALTER TABLE `sport`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`uid`),
-  ADD UNIQUE KEY `userName` (`userName`);
+  ADD UNIQUE KEY `userName` (`userName`),
+  ADD KEY `uid` (`uid`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -169,13 +188,25 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `club`
 --
 ALTER TABLE `club`
-  MODIFY `clubId` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `clubId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `clubmembership`
+--
+ALTER TABLE `clubmembership`
+  MODIFY `membershipId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
   MODIFY `eventId` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `eventparticipation`
+--
+ALTER TABLE `eventparticipation`
+  MODIFY `participationId` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `sport`
@@ -187,7 +218,7 @@ ALTER TABLE `sport`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Constraints for dumped tables
@@ -201,11 +232,25 @@ ALTER TABLE `club`
   ADD CONSTRAINT `club_ibfk_2` FOREIGN KEY (`type`) REFERENCES `sport` (`sport_id`);
 
 --
+-- Constraints for table `clubmembership`
+--
+ALTER TABLE `clubmembership`
+  ADD CONSTRAINT `FK_CLUB` FOREIGN KEY (`clubId`) REFERENCES `club` (`clubId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_USER` FOREIGN KEY (`memberId`) REFERENCES `user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `event`
 --
 ALTER TABLE `event`
   ADD CONSTRAINT `event_ibfk_1` FOREIGN KEY (`addedByUid`) REFERENCES `user` (`uid`),
   ADD CONSTRAINT `event_ibfk_2` FOREIGN KEY (`forClub`) REFERENCES `club` (`clubId`);
+
+--
+-- Constraints for table `eventparticipation`
+--
+ALTER TABLE `eventparticipation`
+  ADD CONSTRAINT `FK_EVENT` FOREIGN KEY (`eventId`) REFERENCES `event` (`eventId`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `FK_PARTICIPANT` FOREIGN KEY (`participantId`) REFERENCES `user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
