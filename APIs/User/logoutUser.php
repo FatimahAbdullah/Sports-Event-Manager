@@ -12,26 +12,18 @@ include_once '../../models/User.php';
 $database = new Database();
 $db_conn = $database->connect();
 $response_arr["status_code"]    =       200;
-$response_arr["status_message"] =       "Signed Up Successfully!"; //default ..else failure message
+$response_arr["status_message"] =       "Logged out Successfully!"; //default ..else failure message
 
 // Initialize User object
 $user = new User($db_conn);
 
 // Getting raw posted data 
-$data = json_decode(file_get_contents("php://input"));
-
-$user->userName = $data->userName;
-$user->fullName = $data->fullName;
-$user->email = $data->email;
-$user->password = $data->password;
-$user->about = $data->about;
-$user->forgetPasswordQA = $data->forgetPasswordQA;
-
-// SignUp User ...create entry in db
-if ($user->signUp()) {
-  echo json_encode($response_arr);
-} else {
+if(isset($_SESSION['userName'])){
+    unset($_SESSION['userName']);
+    echo json_encode($response_arr);
+}
+else {
   $response_arr["status_code"] = 301;
-  $response_arr["status_message"] = "Invalid Credentials";
+  $response_arr["status_message"] = "No user already Logged in!";
   echo json_encode($response_arr);
 }

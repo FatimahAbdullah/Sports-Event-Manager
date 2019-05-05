@@ -12,7 +12,7 @@ include_once '../../models/User.php';
 $database = new Database();
 $db_conn = $database->connect();
 $response_arr["status_code"]    =       200;
-$response_arr["status_message"] =       "Signed Up Successfully!"; //default ..else failure message
+$response_arr["status_message"] =       "Logged in Successfully!"; //default ..else failure message
 
 // Initialize User object
 $user = new User($db_conn);
@@ -21,14 +21,13 @@ $user = new User($db_conn);
 $data = json_decode(file_get_contents("php://input"));
 
 $user->userName = $data->userName;
-$user->fullName = $data->fullName;
-$user->email = $data->email;
 $user->password = $data->password;
-$user->about = $data->about;
-$user->forgetPasswordQA = $data->forgetPasswordQA;
+
 
 // SignUp User ...create entry in db
-if ($user->signUp()) {
+if ($user->login()) {
+    session_start();
+    $_SESSION['userName']=$user->userName;  
   echo json_encode($response_arr);
 } else {
   $response_arr["status_code"] = 301;
