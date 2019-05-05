@@ -1,4 +1,4 @@
-# Sports-Event-Manager
+# Sports Event Manager
 REST API developed in php for an andrioid client which performs the functionality of sports event management
 
 ## ABOUT
