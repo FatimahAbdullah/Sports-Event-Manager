@@ -51,7 +51,13 @@ class User
     try {
       // Execute query
       if ($stmt->execute()) {
+        $stmt->fetch(PDO::FETCH_ASSOC);
+        if($stmt->rowCount() > 0)
+        {
         return true;
+        }else{
+          return false;
+        }
       }
     } catch (PDOException $e) {
       echo $e->getMessage();

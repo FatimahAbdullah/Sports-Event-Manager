@@ -16,7 +16,7 @@ $response_arr["status_message"] =       "Logged out Successfully!"; //default ..
 
 // Initialize User object
 $user = new User($db_conn);
-
+session_start();
 // Getting raw posted data 
 if(isset($_SESSION['userName'])){
     unset($_SESSION['userName']);
