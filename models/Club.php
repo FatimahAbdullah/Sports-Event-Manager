@@ -10,6 +10,7 @@
     public $creationDate;
     public $founderUid;
     public $type;
+    public $sport;
     // Constructor with DB
     public function __construct($db) {
       $this->conn = $db;
