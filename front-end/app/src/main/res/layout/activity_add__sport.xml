@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/red_purple_fire_back"
+    tools:context=".Add_Sport">
+
+
+    <TextView
+        android:id="@+id/addNewSportActivity"
+        android:layout_width="302dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="144dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:alpha="0.7"
+        android:background="@color/colorNavyBlue"
+        android:fontFamily="@font/aclonica"
+        android:gravity="center"
+        android:text="Register New Sport"
+        android:textColor="@color/shockingPink"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/sportName"
+        android:layout_width="302dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:alpha="0.7"
+        android:background="@color/colorNavyBlue"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Enter New Sport Name"
+        android:inputType="textPersonName"
+        android:textColor="@color/white_color"
+        android:textColorHint="@color/white_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addNewSportActivity" />
+
+    <Button
+        android:id="@+id/addSportBtn"
+        android:layout_width="302dp"
+        android:layout_height="52dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:background="@color/shockingPink"
+        android:ems="10"
+        android:text="Register"
+        android:textColor="@color/colorNavyBlue"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sportName" />
+
+</android.support.constraint.ConstraintLayout>

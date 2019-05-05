@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Add_Event_for_Club"
+    android:background="@drawable/red_purple_fire_back">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/addEventForClubActivity"
+            android:layout_width="229dp"
+            android:layout_height="59dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:alpha="0.7"
+            android:background="@color/colorNavyBlue"
+            android:fontFamily="@font/aclonica"
+            android:gravity="center"
+            android:text="Add Event"
+            android:textColor="@color/shockingPink"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/eventName"
+            android:layout_width="302dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:alpha="0.7"
+            android:background="@color/colorNavyBlue"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Give Event a Name"
+            android:inputType="textPersonName"
+            android:textColor="@color/white_color"
+            android:textColorHint="@color/white_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addEventForClubActivity" />
+
+        <EditText
+            android:id="@+id/eventDescription"
+            android:layout_width="302dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:alpha="0.7"
+            android:background="@color/colorNavyBlue"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Enter Detail of Event"
+            android:inputType="textPersonName"
+            android:textColor="@color/white_color"
+            android:textColorHint="@color/white_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventName" />
+
+        <TextView
+            android:id="@+id/eventDate"
+            android:layout_width="302dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:alpha="0.7"
+            android:background="@color/colorNavyBlue"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Select for Event Date"
+            android:inputType="textPersonName"
+            android:textColor="@color/white_color"
+            android:textColorHint="@color/white_color"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventDescription" />
+
+
+        <EditText
+            android:id="@+id/eventLocation"
+            android:layout_width="302dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:alpha="0.7"
+            android:background="@color/colorNavyBlue"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Enter Event location/Venue"
+            android:inputType="textPersonName"
+            android:textColor="@color/white_color"
+            android:textColorHint="@color/white_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventDate" />
+
+        <Spinner
+            android:id="@+id/clubSpinner"
+            android:layout_width="302dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:alpha="0.7"
+            android:background="@color/colorNavyBlue"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="Enter Best Friend Forget Password"
+            android:inputType="textPersonName"
+            android:textColor="@color/white_color"
+            android:textColorHint="@color/white_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventLocation" />
+
+        <Button
+            android:id="@+id/registerEvent"
+            android:layout_width="302dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@color/shockingPink"
+            android:ems="10"
+            android:text="Register"
+            android:textColor="@color/colorNavyBlue"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clubSpinner" />
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>
